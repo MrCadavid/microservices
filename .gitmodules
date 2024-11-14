@@ -1,0 +1,12 @@
+[submodule "service-registry"]
+	path = service-registry
+	url = https://github.com/kingElfos/service-registry.git
+[submodule "notifications-service"]
+	path = notifications-service
+	url = https://github.com/kingElfos/notifications-service.git
+[submodule "cloud-gateway"]
+	path = cloud-gateway
+	url = https://github.com/kingElfos/cloud-gateway.git
+[submodule "events-service"]
+	path = events-service
+	url = https://github.com/kingElfos/events-service.git
