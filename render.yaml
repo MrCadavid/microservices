@@ -1,6 +1,6 @@
 services:
   # Event Service
-  - type: web-service
+  - type: web
     name: event-service
     env: docker
     dockerfilePath: ./events-service/Dockerfile
@@ -16,7 +16,7 @@ services:
         value: jackal-01.rmq.cloudamqp.com
 
   # Notification Service
-  - type: web-service
+  - type: web
     name: notification-service
     env: docker
     dockerfilePath: ./notifications-service/Dockerfile
@@ -32,7 +32,7 @@ services:
         value: jackal-01.rmq.cloudamqp.com
 
   # API Gateway
-  - type: web-service
+  - type: web
     name: api-gateway
     env: docker
     dockerfilePath: ./cloud-gateway/Dockerfile
@@ -41,7 +41,7 @@ services:
     healthCheckPath: /actuator/health
 
   # Eureka Service Registry
-  - type: web-service
+  - type: web
     name: eureka-service
     env: docker
     dockerfilePath: ./service-registry/Dockerfile
