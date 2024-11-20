@@ -28,6 +28,14 @@ This project implements a microservice architecture using Spring Boot and severa
    - **Port**: 8082
    - A single entry point to the microservices, managing requests and redirecting them to the appropriate services.
 
+## Documentation with OpenAPI and Swagger
+
+The documentation for all the microservices is generated using OpenAPI and Swagger. You can access the API documentation for all the microservices through the API Gateway by visiting the following URL:
+
+- [API Documentation (Swagger UI)](http://localhost:8082/swagger-ui.html)
+
+This Swagger UI provides an interactive interface where you can explore and test all the available endpoints for each microservice. It includes details on the request/response formats, parameters, and possible responses.
+
 ## Prerequisites
 
 Before running the microservices, make sure the following services are deployed and running:
@@ -48,5 +56,5 @@ The microservices will be available on the following ports:
 
 1. **Clone the repository**:
    ```bash
-   git clone --recurse-submodules https://github.com/kingElfos/microservices.git
+   git clone --recurse-submodules https://github.com/MrCadavid/microservices.git
    cd microservices
