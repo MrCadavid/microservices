@@ -1,0 +1,50 @@
+services:
+  # Event Service
+  - type: web-service
+    name: event-service
+    env: docker
+    dockerfilePath: ./events-service/Dockerfile
+    plan: standard
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:postgresql://dpg-csu1c7a3esus73c5o8s0-a.oregon-postgres.render.com/event_schedule
+      - key: SPRING_DATASOURCE_USERNAME
+        value: db_events_9wwt_user
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: sTA1L2gp0ko0EV4L6m87M8bIVpwFs9A7
+      - key: RABBITMQ_HOST
+        value: jackal-01.rmq.cloudamqp.com
+
+  # Notification Service
+  - type: web-service
+    name: notification-service
+    env: docker
+    dockerfilePath: ./notifications-service/Dockerfile
+    plan: standard
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:postgresql://dpg-csu1c7a3esus73c5o8s0-a.oregon-postgres.render.com/event_schedule
+      - key: SPRING_DATASOURCE_USERNAME
+        value: db_events_9wwt_user
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: sTA1L2gp0ko0EV4L6m87M8bIVpwFs9A7
+      - key: RABBITMQ_HOST
+        value: jackal-01.rmq.cloudamqp.com
+
+  # API Gateway
+  - type: web-service
+    name: api-gateway
+    env: docker
+    dockerfilePath: ./cloud-gateway/Dockerfile
+    plan: standard
+    envVars: []
+    healthCheckPath: /actuator/health
+
+  # Eureka Service Registry
+  - type: web-service
+    name: eureka-service
+    env: docker
+    dockerfilePath: ./service-registry/Dockerfile
+    plan: standard
+    envVars: []
+    healthCheckPath: /actuator/health
