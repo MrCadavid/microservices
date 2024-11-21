@@ -76,4 +76,4 @@ services:
 
 networks:
   microservices-net:
-    driver: host
+    driver: bridge
