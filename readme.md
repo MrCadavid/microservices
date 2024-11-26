@@ -32,9 +32,17 @@ This project implements a microservice architecture using Spring Boot and severa
 
 The documentation for all the microservices is generated using OpenAPI and Swagger. You can access the API documentation for all the microservices through the API Gateway by visiting the following URL:
 
-- [API Documentation (Swagger UI)](http://localhost:8082/swagger-ui.html)
+- [API Documentation (Swagger UI)](http://40.81.203.165:8082/swagger-ui.html)
 
 This Swagger UI provides an interactive interface where you can explore and test all the available endpoints for each microservice. It includes details on the request/response formats, parameters, and possible responses.
+
+## Accessing the Event Site
+
+You can access the event site at the following URL:
+
+- [Event Site](http://whitelink.japaneast.cloudapp.azure.com/)
+
+Please note that the site currently does not support HTTPS, but we are planning to implement it soon.
 
 ## Prerequisites
 
@@ -58,45 +66,3 @@ The microservices will be available on the following ports:
    ```bash
    git clone --recurse-submodules https://github.com/MrCadavid/microservices.git
    cd microservices
-   ```
-
-## How to Run the Project with Docker Compose
-
-### Option 1: Run with Docker Compose
-
-This project includes a `docker-compose.yml` file to easily run all the microservices using Docker. To start the services using Docker Compose, follow these steps:
-
-1. **Ensure Docker and Docker Compose are installed** on your machine.
-
-2. **Build and run the services** with Docker Compose:
-   ```bash
-   docker-compose up --build
-   ```
-
-   This command will:
-   - Build the Docker images for the microservices.
-   - Start the containers for each microservice (Eureka, API Gateway, Event Service, and Notification Service).
-
-3. **Access the services**:
-   - **Eureka (Service Registry)**: `http://localhost:8761`
-   - **API Gateway**: `http://localhost:8082`
-   - **Event Service**: `http://localhost:8080`
-   - **Notification Service**: `http://localhost:8081`
-
-### Option 2: Run Individually (Without Docker Compose)
-
-If you prefer to run each service individually, make sure to start the services in the following order:
-1. **Eureka Service** on port 8761
-2. **Event Service** on port 8080
-3. **Notification Service** on port 8081
-4. **API Gateway** on port 8082
-
-## Stopping the Services
-
-To stop the services running with Docker Compose, use the following command:
-
-```bash
-docker-compose down
-```
-
-This will stop and remove all the containers.
