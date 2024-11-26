@@ -32,7 +32,7 @@ This project implements a microservice architecture using Spring Boot and severa
 
 The documentation for all the microservices is generated using OpenAPI and Swagger. You can access the API documentation for all the microservices through the API Gateway by visiting the following URL:
 
-- [API Documentation (Swagger UI)](http://40.81.203.165:8082/swagger-ui.html)
+- [API Documentation (Swagger UI)](http://whitelink.japaneast.cloudapp.azure.com:8082/swagger-ui.html)
 
 This Swagger UI provides an interactive interface where you can explore and test all the available endpoints for each microservice. It includes details on the request/response formats, parameters, and possible responses.
 
