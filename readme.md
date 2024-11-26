@@ -58,3 +58,45 @@ The microservices will be available on the following ports:
    ```bash
    git clone --recurse-submodules https://github.com/MrCadavid/microservices.git
    cd microservices
+   ```
+
+## How to Run the Project with Docker Compose
+
+### Option 1: Run with Docker Compose
+
+This project includes a `docker-compose.yml` file to easily run all the microservices using Docker. To start the services using Docker Compose, follow these steps:
+
+1. **Ensure Docker and Docker Compose are installed** on your machine.
+
+2. **Build and run the services** with Docker Compose:
+   ```bash
+   docker-compose up --build
+   ```
+
+   This command will:
+   - Build the Docker images for the microservices.
+   - Start the containers for each microservice (Eureka, API Gateway, Event Service, and Notification Service).
+
+3. **Access the services**:
+   - **Eureka (Service Registry)**: `http://localhost:8761`
+   - **API Gateway**: `http://localhost:8082`
+   - **Event Service**: `http://localhost:8080`
+   - **Notification Service**: `http://localhost:8081`
+
+### Option 2: Run Individually (Without Docker Compose)
+
+If you prefer to run each service individually, make sure to start the services in the following order:
+1. **Eureka Service** on port 8761
+2. **Event Service** on port 8080
+3. **Notification Service** on port 8081
+4. **API Gateway** on port 8082
+
+## Stopping the Services
+
+To stop the services running with Docker Compose, use the following command:
+
+```bash
+docker-compose down
+```
+
+This will stop and remove all the containers.

@@ -1,0 +1,71 @@
+version: "3.8"
+
+services:
+  eureka:
+    build:
+      context: ./service-registry
+    ports:
+      - "8761:8761"
+    environment:
+      - EUREKA_SERVER_PORT=8761
+    networks:
+      - microservices-net
+
+  wait-for-eureka:
+    image: busybox
+    command: /bin/sh -c "until nc -z -v -w30 eureka 8761; do echo 'Waiting for Eureka...'; sleep 5; done; echo 'Eureka is up!'"
+    depends_on:
+      - eureka
+    networks:
+      - microservices-net
+
+  api-gateway:
+    build:
+      context: ./cloud-gateway
+    ports:
+      - "8082:8082"
+    depends_on:
+      - wait-for-eureka
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+      - SPRING_APPLICATION_NAME=api-gateway
+      - SPRING_PROFILES_ACTIVE=default
+    networks:
+      - microservices-net
+
+  event-service:
+    build:
+      context: ./events-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - wait-for-eureka
+      - notification-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://dpg-csu1c7a3esus73c5o8s0-a.oregon-postgres.render.com/event_schedule
+      - SPRING_DATASOURCE_USERNAME=db_events_9wwt_user
+      - SPRING_DATASOURCE_PASSWORD=sTA1L2gp0ko0EV4L6m87M8bIVpwFs9A7
+      - RABBITMQ_HOST=jackal-01.rmq.cloudamqp.com
+      - EUREKA_SERVER_URL=http://eureka:8761/eureka
+    networks:
+      - microservices-net
+
+  notification-service:
+    build:
+      context: ./notifications-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - wait-for-eureka
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://dpg-csu1c7a3esus73c5o8s0-a.oregon-postgres.render.com/event_schedule
+      - SPRING_DATASOURCE_USERNAME=db_events_9wwt_user
+      - SPRING_DATASOURCE_PASSWORD=sTA1L2gp0ko0EV4L6m87M8bIVpwFs9A7
+      - RABBITMQ_HOST=jackal-01.rmq.cloudamqp.com
+      - EUREKA_SERVER_URL=http://eureka:8761/eureka
+    networks:
+      - microservices-net
+
+networks:
+  microservices-net:
+    driver: bridge
