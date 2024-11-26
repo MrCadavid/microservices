@@ -60,9 +60,59 @@ The microservices will be available on the following ports:
 - **Service Registry (Eureka)**: `http://localhost:8761`
 - **API Gateway**: `http://localhost:8082`
 
-## How to Run the Project
+## How to Run the Project Locally with Docker Compose
 
-1. **Clone the repository**:
-   ```bash
-   git clone --recurse-submodules https://github.com/MrCadavid/microservices.git
-   cd microservices
+To run the project locally using Docker Compose, follow these steps:
+
+### 1. Clone the repository:
+
+```bash
+git clone --recurse-submodules https://github.com/MrCadavid/microservices.git
+cd microservices
+```
+
+### 2. Ensure Docker and Docker Compose are installed on your machine.
+
+You can check if Docker and Docker Compose are installed by running:
+
+```bash
+docker --version
+docker-compose --version
+```
+
+If not installed, follow the [installation guide for Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) for your operating system.
+
+### 3. Build and run the services with Docker Compose:
+
+In the project directory, run the following command to build and start the services:
+
+```bash
+docker-compose up --build
+```
+
+This will:
+- Build the Docker images for the microservices.
+- Start the containers for each microservice (Eureka, API Gateway, Event Service, and Notification Service).
+
+### 4. Access the services:
+
+Once the services are up and running, you can access them using the following URLs (replace `localhost` with the IP or hostname if running on a remote machine):
+
+- **Eureka (Service Registry)**: `http://localhost:8761`
+- **API Gateway**: `http://localhost:8082`
+- **Event Service**: `http://localhost:8080`
+- **Notification Service**: `http://localhost:8081`
+
+Additionally, the Swagger UI documentation can be accessed at:
+
+- [API Documentation (Swagger UI)](http://localhost:8082/swagger-ui.html)
+
+### 5. Stopping the Services
+
+To stop the services running with Docker Compose, use the following command:
+
+```bash
+docker-compose down
+```
+
+This will stop and remove all the containers.
